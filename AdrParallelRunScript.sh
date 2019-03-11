@@ -2,16 +2,17 @@
 # use chmod +x AdrParallelScript.sh
 #Takes 1 argument numberofProcessors 
 numberofProcessors=$1
+jobstxt=$2
+joblog=$(echo $jobstxt | cut -c1-6).log
 
-LD_LIBRARY_PATH=/home/.MATLAB/R2018a/bin/glnxa64:/home/.MATLAB/R2018a/sys/os/glnxa64
-export LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/.MATLAB/R2018a/bin/glnxa64:/home/.MATLAB/R2018a/sys/os/glnxa64:$LD_LIBRARY_PATH
 
 set -o monitor 
 # means: run background processes in a separate processes...
 trap add_next_job CHLD 
 # execute add_next_job when we receive a child complete signal
 
-readarray todo_array < jobs.txt
+readarray todo_array < $jobstxt
 index=0
 max_jobs=$numberofProcessors
 echo "Number of Process: " $max_jobs
@@ -31,7 +32,7 @@ function do_job {
     STARTTIME=`date`
     ./adr -i $1 $2 $3 
     ENDTIME=`date`
-    echo $1 $2 $3 $STARTTIME $ENDTIME>> jobs.log
+    echo $1 $2 $3 $STARTTIME $ENDTIME>> $joblog
 }
 
 # add initial set of jobs
