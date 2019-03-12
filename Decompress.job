@@ -11,5 +11,5 @@ hostname=$(hostname)
 nodeid=$(echo $hostname | cut -c8-9)
 jobstxt="jobs$nodeid.txt"
 
-./createjobs_adr.sh /data/Japan_Project_data/20181219 
-./AdrParallelRunScript.sh 32 $jobstxt
+./createjobs_decomp.sh /data/Japan_Project_data/20181218/tmp_data
+./Decompress.sh 32 $jobstxt

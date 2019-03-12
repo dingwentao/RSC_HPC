@@ -3,9 +3,10 @@
 #Takes 1 argument numberofProcessors 
 numberofProcessors=$1
 jobstxt=$2
-joblog=$(echo $jobstxt | cut -c1-6)-$(date +"%y%m%d-%H%M%S").adr.log
+joblog=$(echo $jobstxt | cut -c1-6)-$(date +"%y%m%d-%H%M%S").decomp.log
 
 export LD_LIBRARY_PATH=/home/.MATLAB/R2018a/bin/glnxa64:/home/.MATLAB/R2018a/sys/os/glnxa64:$LD_LIBRARY_PATH
+export PATH=/home/.MATLAB/R2018a/bin:$PATH
 
 set -o monitor 
 # means: run background processes in a separate processes...
@@ -30,7 +31,10 @@ function add_next_job {
 function do_job {
     echo "starting job $1 $2 $3"
     STARTTIME=`date`
-    ./adr -i $1 $2 $3 
+    #echo "Greenland_data_decompression('$1');exit"
+    #echo "./matlab -nodisplay -nodesktop -r ""Greenland_data_decompression('$1');exit"
+    #echo "hello world!"
+    nohup matlab -nodisplay -nodesktop -r "decompression('$1');exit"
     ENDTIME=`date`
     echo $1 $2 $3 $STARTTIME $ENDTIME>> $joblog
 }
@@ -44,6 +48,4 @@ done
 # wait for all jobs to complete
 wait
 echo "All jobs completed"
-
-
 
