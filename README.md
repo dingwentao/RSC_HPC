@@ -2,6 +2,8 @@
 
 Scripts for parallel processing of ADR and Matlab code
 
-To submit ADR job to Slurm: sbatch Adr.job
+To run ADR code on 1 node with 32 cores: sbatch Adr.job
 
-To submit Decompression job to Slurm: sbatch Decompress.job
+To run Matlab decompression on 1 node with 32 cores: sbatch Decompress.job
+
+Note: Please change variable DATA_DIR in Adr.job and Decompress.job to the path of your data directory. 
