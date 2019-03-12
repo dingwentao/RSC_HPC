@@ -30,7 +30,7 @@ function add_next_job {
 function do_job {
     echo "starting job $1 $2 $3"
     STARTTIME=`date`
-    ./adr -i $1 $2 $3 
+    ./adr -i $1 -m 1
     ENDTIME=`date`
     echo $1 $2 $3 $STARTTIME $ENDTIME>> $joblog
 }
@@ -44,6 +44,3 @@ done
 # wait for all jobs to complete
 wait
 echo "All jobs completed"
-
-
-
