@@ -2,9 +2,9 @@
 # use chmod +x AdrParallelRunScript.sh
 numberofProcessors=$1
 jobstxt=$2
-joblog=$(echo $jobstxt | cut -c1-6)-$(date +"%y%m%d-%H%M%S").adr.log
 dataDir=$3
 shortMode=$4
+joblog=$dataDir/$(date +"%y%m%d-%H%M%S").log
 xmlFile=$(ls $dataDir/*.xml | head -n 1)
 valueRange=$(sh ./extract_xml_linux.sh $xmlFile printRange)
 
