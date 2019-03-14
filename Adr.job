@@ -7,7 +7,7 @@
 #SBATCH -o japan-project.%j.out
 #SBATCH -e japan-project.%j.error
 
-dataDir=/data/Japan_Project_data/20190108_test
+dataDir=/data/Japan_Project_data/20190108
 numofProcess=32
 hostname=$(hostname)
 nodeid=$(echo $hostname | cut -c8-9)

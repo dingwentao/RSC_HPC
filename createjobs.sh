@@ -1,7 +1,7 @@
 DIR=$1
 hostname=$(hostname)
 nodeid=$(echo $hostname | cut -c8-9)
-jobstxt="$DIR/jobs.txt"
+jobstxt=$DIR/jobs.txt
 
 cp /dev/null $jobstxt
 
