@@ -1,10 +1,8 @@
 #/!bin/bash
 # author: JianNan Tian
 # timezone: Central Time
-
 # update: 4:18 PM, March 13, 2019
 #   check num of args
-
 # update: 3:56 PM, March 13, 2019 (central time)
 #   add printing range functionality
 

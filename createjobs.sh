@@ -1,7 +1,9 @@
-DIR=$1
-hostname=$(hostname)
-nodeid=$(echo $hostname | cut -c8-9)
-jobstxt=$DIR/jobs.txt
+#/!bin/bash
+# author: Dingwen Tao
+# create: March 14, 2019
+
+dataDir=$1
+jobstxt=$dataDir/jobs.txt
 
 cp /dev/null $jobstxt
 

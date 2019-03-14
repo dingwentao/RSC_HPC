@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
+# author: Arpan Sainju, Dingwen Tao
+# update: March 14, 2019
 # use chmod +x AdrParallelRunScript.sh
+
 numberofProcessors=$1
 jobstxt=$2
 dataDir=$3
