@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 # use chmod +x AdrParallelRunScript.sh
-#Takes 1 argument numberofProcessors 
 numberofProcessors=$1
 jobstxt=$2
 joblog=$(echo $jobstxt | cut -c1-6)-$(date +"%y%m%d-%H%M%S").adr.log
 dataDir=$3
+shortMode=$4
 xmlFile=$(ls $dataDir/*.xml | head -n 1)
 valueRange=$(sh ./extract_xml_linux.sh $xmlFile printRange)
 
@@ -33,7 +33,7 @@ function add_next_job {
 function do_job {
     echo "starting job $1 $2 $3"
     STARTTIME=`date`
-    ./adr -i $1 -m 1 -r $valueRange
+    ./adr -i $1 -m 1 -r $valueRange -sm $shortMode
     ENDTIME=`date`
     echo $1 $2 $3 $STARTTIME $ENDTIME>> $joblog
 }
