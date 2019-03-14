@@ -31,11 +31,17 @@ function add_next_job {
 }
 
 function do_job {
-    echo "starting job $1 $2 $3"
+    echo "starting job $1"
     STARTTIME=`date`
     ./adr -i $1 -m 1 -r $valueRange -sm $shortMode
+    datfile=$1
+    datfile=${datfile::-4}
+    matextention='.mat'
+    matfile=$datfile$matextention 
+    nohup matlab -nodisplay -nodesktop -r "decompression('$matfile');exit"
     ENDTIME=`date`
-    echo $1 $2 $3 $STARTTIME $ENDTIME>> $joblog
+    echo "decompression job $matfile completed"    
+    echo $1 $STARTTIME $ENDTIME>> $joblog
 }
 
 # add initial set of jobs
