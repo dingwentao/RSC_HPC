@@ -7,11 +7,10 @@
 #SBATCH -o japan-project.%j.out
 #SBATCH -e japan-project.%j.error
 
-DATA_DIR=/data/Japan_Project_data/20181219
-
+dataDir=/data/Japan_Project_data/20181219
 hostname=$(hostname)
 nodeid=$(echo $hostname | cut -c8-9)
 jobstxt="jobs$nodeid.txt"
 
-./createjobs_adr.sh $DATA_DIR
-./AdrParallelRunScript.sh 32 $jobstxt
+./createjobs_adr.sh $dataDir
+./AdrParallelRunScript.sh 32 $jobstxt $dataDir
